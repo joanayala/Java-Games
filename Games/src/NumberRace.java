@@ -1,5 +1,7 @@
 
 import java.util.Random;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,6 +18,8 @@ public class NumberRace extends javax.swing.JFrame {
     /**
      * Creates new form NumberRace
      */
+    int counter = 0;
+    
     public NumberRace() {
         initComponents();
     }
@@ -29,6 +33,7 @@ public class NumberRace extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jProgressBar1 = new javax.swing.JProgressBar();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -36,6 +41,8 @@ public class NumberRace extends javax.swing.JFrame {
         lblD2 = new javax.swing.JLabel();
         lblD1 = new javax.swing.JLabel();
         button1 = new java.awt.Button();
+        button2 = new java.awt.Button();
+        lblCounter = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Number race");
@@ -48,12 +55,12 @@ public class NumberRace extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Number race");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 90, 710, 20);
+        jLabel1.setBounds(0, 80, 710, 20);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/car64px.png"))); // NOI18N
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(280, 0, 160, 120);
+        jLabel2.setBounds(280, -10, 160, 120);
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 102));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dices"));
@@ -61,18 +68,18 @@ public class NumberRace extends javax.swing.JFrame {
 
         lblD2.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         lblD2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblD2.setText("?");
+        lblD2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/question.png"))); // NOI18N
         jPanel2.add(lblD2);
-        lblD2.setBounds(60, 150, 90, 83);
+        lblD2.setBounds(60, 160, 90, 83);
 
         lblD1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         lblD1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblD1.setText("?");
+        lblD1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/question.png"))); // NOI18N
         jPanel2.add(lblD1);
-        lblD1.setBounds(60, 40, 90, 83);
+        lblD1.setBounds(60, 50, 90, 83);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(40, 130, 210, 290);
+        jPanel2.setBounds(50, 60, 210, 290);
 
         button1.setLabel("Play");
         button1.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +88,22 @@ public class NumberRace extends javax.swing.JFrame {
             }
         });
         jPanel1.add(button1);
-        button1.setBounds(40, 440, 210, 40);
+        button1.setBounds(50, 360, 210, 40);
+
+        button2.setLabel("Try again");
+        button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(button2);
+        button2.setBounds(50, 410, 210, 40);
+
+        lblCounter.setFont(new java.awt.Font("Tahoma", 1, 60)); // NOI18N
+        lblCounter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCounter.setText("0");
+        jPanel1.add(lblCounter);
+        lblCounter.setBounds(350, 100, 280, 250);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,9 +113,7 @@ public class NumberRace extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
         );
 
         pack();
@@ -108,9 +128,72 @@ public class NumberRace extends javax.swing.JFrame {
         d1 = (int)(D.nextDouble()* 6 + 1);
         d2 = (int)(D.nextDouble()* 6 + 1);
         
-        lblD1.setText(Integer.toString(d1));
-        lblD2.setText(Integer.toString(d2));
+        counter = counter + (d1 + d2);
+        lblCounter.setText(Integer.toString(counter));
+        
+        //lblD1.setText(Integer.toString(d1));
+        //lblD2.setText(Integer.toString(d2));
+        
+        switch(d1){
+            case 1:
+                lblD1.setIcon(new ImageIcon(getClass().getResource("images/1.png")));
+                break;
+            case 2:
+                lblD1.setIcon(new ImageIcon(getClass().getResource("images/2.png")));
+                break;
+            case 3:
+                lblD1.setIcon(new ImageIcon(getClass().getResource("images/3.png")));
+                break;
+            case 4:
+                lblD1.setIcon(new ImageIcon(getClass().getResource("images/4.png")));
+                break;
+            case 5:
+                lblD1.setIcon(new ImageIcon(getClass().getResource("images/5.png")));
+                break;
+            case 6:
+                lblD1.setIcon(new ImageIcon(getClass().getResource("images/6.png")));
+                break;
+            default:
+                break;
+        }
+        
+        switch(d2){
+            case 1:
+                lblD2.setIcon(new ImageIcon(getClass().getResource("images/1.png")));
+                break;
+            case 2:
+                lblD2.setIcon(new ImageIcon(getClass().getResource("images/2.png")));
+                break;
+            case 3:
+                lblD2.setIcon(new ImageIcon(getClass().getResource("images/3.png")));
+                break;
+            case 4:
+                lblD2.setIcon(new ImageIcon(getClass().getResource("images/4.png")));
+                break;
+            case 5:
+                lblD2.setIcon(new ImageIcon(getClass().getResource("images/5.png")));
+                break;
+            case 6:
+                lblD2.setIcon(new ImageIcon(getClass().getResource("images/6.png")));
+                break;
+            default:
+                break;
+        }
+        
+        if(d1 == 1 && d2 == 1){
+            JOptionPane.showMessageDialog(null, "::: YOU WIN :::");
+        }  
     }//GEN-LAST:event_button1ActionPerformed
+
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+        // TODO add your handling code here:
+        //lblD1.setText("?");
+        //lblD2.setText("?");
+        lblD1.setIcon(new ImageIcon(getClass().getResource("images/question.png")));
+        lblD2.setIcon(new ImageIcon(getClass().getResource("images/question.png")));
+        
+        lblCounter.setText("0");
+    }//GEN-LAST:event_button2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,10 +232,13 @@ public class NumberRace extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
+    private java.awt.Button button2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel lblCounter;
     private javax.swing.JLabel lblD1;
     private javax.swing.JLabel lblD2;
     // End of variables declaration//GEN-END:variables
